@@ -24,7 +24,6 @@ RUN pip install Django
 RUN apt-get -y install vim
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/yuu341/sayuton; cd sayuton; python manage.py runserver &
+RUN git clone https://github.com/yuu341/sayuton
 
-CMD [ "python", "/root/sayuton/manage.py runserver 0.0.0.0:8000" ]
 
