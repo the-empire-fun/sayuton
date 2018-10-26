@@ -1,16 +1,16 @@
 pipeline:
   build:
-    image: habuka036/sayuton:latest
+    image: habuka036/sayuton:develop
     commands:
       - echo build
 
   test:
-    image: habuka036/sayuton:latest
+    image: habuka036/sayuton:develop
     commands:
       - echo test
 
   deploy:
-    image: habuka036/sayuton:latest
+    image: habuka036/sayuton:develop
     commands:
       - docker -H tcp://sayuton.the-empire.fun:2345 pull habuka036/sayuton:develop
       - docker -H tcp://sayuton.the-empire.fun:2345 stop sayuton
