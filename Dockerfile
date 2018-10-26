@@ -24,4 +24,4 @@ RUN pip install Django
 RUN apt-get -y install vim
 RUN rm -rf /var/lib/apt/lists/*
 
-
+COPY tools/run.sh /usr/local/bin/
