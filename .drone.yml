@@ -1,0 +1,29 @@
+pipeline:
+  build:
+    image: habuka036/sayuton:latest
+    commands:
+      - echo build
+
+  test:
+    image: habuka036/sayuton:latest
+    commands:
+      - echo test
+
+  deploy:
+    image: habuka036/sayuton:latest
+    commands:
+      - docker -H tcp://sayuton.the-empire.fun:2345 pull habuka036/sayuton:develop
+      - docker -H tcp://sayuton.the-empire.fun:2345 stop sayuton
+      - docker -H tcp://sayuton.the-empire.fun:2345 run --rm -it -d -p 80:8000 --name sayuton habuka036/sayuton:develop /usr/local/bin/run.sh
+
+  slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: kansai-in-tokyo
+    username: drone
+    when:
+      status: [ success, failure ]
+
+
+
+branches: [ master, develop ]
