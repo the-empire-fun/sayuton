@@ -24,6 +24,4 @@ RUN pip install Django
 RUN apt-get -y install vim
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/yuu341/sayuton
-
 
