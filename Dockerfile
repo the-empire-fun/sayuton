@@ -26,5 +26,4 @@ RUN rm -rf /var/lib/apt/lists/*
 
 COPY tools/run.sh /usr/local/bin/
 
-ENV DOCKER_CLIENT_VERSION=v17.03.2-ce
-RUN curl -fsSL https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_CLIENT_VERSION}.tgz | tar -xzC /usr/local/bin --strip=1 docker/docker
+COPY /usr/bin/docker /usr/local/bin/
