@@ -10,7 +10,7 @@ pipeline:
       - echo test
 
   deploy:
-    image: habuka036/sayuton:develop
+    image: docker:stable
     commands:
       - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 pull habuka036/sayuton:develop
       - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 stop sayuton

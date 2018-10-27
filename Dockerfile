@@ -26,4 +26,4 @@ RUN rm -rf /var/lib/apt/lists/*
 
 COPY tools/run.sh /usr/local/bin/
 
-COPY /usr/bin/docker /usr/local/bin/
+#COPY /usr/bin/docker /usr/local/bin/
