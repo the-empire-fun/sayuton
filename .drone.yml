@@ -3,6 +3,7 @@ pipeline:
     image: habuka036/sayuton:develop
     commands:
       - echo build
+      - echo $DRONE_REPO_NAME
 
   test:
     image: habuka036/sayuton:develop
@@ -18,8 +19,7 @@ pipeline:
 
   slack:
     image: plugins/slack
-    webhook: https://hooks.slack.com/services/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
-    channel: kansai-in-tokyo
+    secrets: [ slack_webhook, slack_channel ]
     username: drone
     when:
       status: [ success, failure ]
