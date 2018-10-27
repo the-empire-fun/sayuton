@@ -3,8 +3,6 @@ pipeline:
     image: habuka036/sayuton:develop
     commands:
       - echo build
-      - echo ${DRONE_REPO}
-      - echo ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}:${DRONE_COMMIT_BRANCH}
 
   test:
     image: habuka036/sayuton:develop
@@ -16,7 +14,7 @@ pipeline:
     commands:
       - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 pull habuka036/sayuton:develop
       - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 stop sayuton || echo SKIP
-      - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 run --rm -it -d -p 80:8000 --name sayuton habuka036/sayuton:develop /usr/local/bin/run.sh
+      - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 run --rm -it -d -p 80:8000 --name sayuton habuka036/sayuton:develop /usr/local/bin/run.sh --owner $DRONE_REPO_OWNER --repository $DRONE_REPO_NAME --branch $DRONE_COMMIT_BRANCH
 
   slack:
     image: plugins/slack
