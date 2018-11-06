@@ -25,7 +25,7 @@ SECRET_KEY = 'l-!pw0h7bmsd)6lv!wl=9q2ub(u$$e@#b#=1zf-k6#tob&!zc@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".the-empire.fun"]
 
 
 # Application definition

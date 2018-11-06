@@ -1,0 +1,28 @@
+pipeline:
+  build:
+    image: habuka036/sayuton:develop
+    commands:
+      - echo build
+
+  test:
+    image: habuka036/sayuton:develop
+    commands:
+      - echo test
+
+  deploy:
+    image: docker:stable
+    commands:
+      - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 pull habuka036/sayuton:develop
+      - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 stop sayuton || echo SKIP
+      - /usr/local/bin/docker -H tcp://sayuton.the-empire.fun:2345 run --rm -it -d -p 80:8000 --name sayuton habuka036/sayuton:develop /usr/local/bin/run.sh --owner $DRONE_REPO_OWNER --repository $DRONE_REPO_NAME --branch $DRONE_COMMIT_BRANCH
+
+  slack:
+    image: plugins/slack
+    secrets: [ slack_webhook, slack_channel ]
+    username: drone
+    when:
+      status: [ success, failure ]
+
+
+
+branches: [ master, develop ]
